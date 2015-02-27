@@ -12,7 +12,7 @@
     			var outPut=document.getElementById("inputTextBox").value;
 				document.getElementById("outPutDiv").innerHTML+=outPut + "<br/>";
 				updateScroll();
-				document.getElementById("inputTextBox").value=">";
+				document.getElementById("inputTextBox").value="$";
 				return false;
 			}
 		};
@@ -39,7 +39,7 @@
                         	
                         </div>
                         <div>
-                            <input id="inputTextBox" style="border:0px" onkeypress="return runScript(event)" text="$" type="text" placeholder="" class="uk-form-blank uk-width-1-1" style="color:white">
+                            <input id="inputTextBox" style="border:0px" onkeypress="return runScript(event)" value="$" type="text" placeholder="" class="uk-form-blank uk-width-1-1" style="color:white">
                         </div>
                     </div>
             </div>
