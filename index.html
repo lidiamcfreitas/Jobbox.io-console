@@ -10,15 +10,17 @@
     	function runScript(e) {
     		if (e.keyCode == 13) {
     			var outPut=document.getElementById("inputTextBox").value;
-				document.getElementById("outPutDiv").innerHTML+=outPut;
-				document.getElementById("inputTextBox").value="";
-				console.log(outPut);
-				/*console.log(outPut);*/
+				document.getElementById("outPutDiv").innerHTML+=outPut + "<br/>";
+				updateScroll();
+				document.getElementById("inputTextBox").value=">";
 				return false;
 			}
 		};
 
-		
+		function updateScroll(){
+    var element = document.getElementById("console");
+    element.scrollTop = element.scrollHeight;
+}
     </script>
     <style>
         body{
@@ -30,14 +32,14 @@
     <div id="page" class="uk-grid">
         <div class="uk-width-1-1">
             <div class="uk-panel uk-panel-box uk-height-viewport uk-vertical-align" style="background-color:#0e6518;border:0px">
-                    <div class="uk-panel uk-panel-box uk-width-1-1 uk-height-1-1 uk-vertical-align-middle" style="background-color:black;border:0px">
+                    <div id="console" class="uk-panel uk-panel-box uk-width-1-1 uk-height-1-1 uk-vertical-align-middle" style="background-color:black;border:0px;overflow:auto;  word-wrap:break-words;">
                         <h1 class=".uk-panel-title" style="color:white">jobbox.io-console</h1>
                         <div id="outPutDiv">
        
                         	
                         </div>
                         <div>
-                            <input id="inputTextBox" onkeypress="return runScript(event)" type="text" placeholder="" class="uk-form-blank uk-width-1-1" style="color:white">
+                            <input id="inputTextBox" style="border:0px" onkeypress="return runScript(event)" text="$" type="text" placeholder="" class="uk-form-blank uk-width-1-1" style="color:white">
                         </div>
                     </div>
             </div>
