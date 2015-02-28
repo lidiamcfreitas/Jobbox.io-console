@@ -31,4 +31,4 @@ This is an HTML console using the Jobbox's API to fetch data provided by them.
 ###referral_requests_sent 
 	Returns the list of referral requests sent by the current user.
 ###clear 
-	clears [best doc ever]
+	clear the terminal screen
