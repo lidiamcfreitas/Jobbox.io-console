@@ -8,10 +8,9 @@ function humanify(str) {
 	return humanified
 }
 
-
 function objToStr(object) {
 	
-	var objectStr = ""
+	var objectStr = ''
 
 	for (var property in object) {
 	   	if (object.hasOwnProperty(property)) {
@@ -23,19 +22,26 @@ function objToStr(object) {
 }
 
 function jsonParser(data) {
-	var str = ""
-	data.forEach(function(entry) {
+	var str = ''
+	
+	if (data.constructor === Array) {
+		// we're dealing with an array of objects
+		data.forEach(function(entry) {
 		// iterate through the array of objects
 		// and "stringify" each one of them
 		str += objToStr(entry)
 		str += "\n" 
-	})
+		})
+	} else {
+		str += objToStr(data)
+		str += "\n"
+	}
 
 	return str
 }
 
 
-function getDataFromUrl(token, url, keyParser) {
+function getDataFromUrl(token, url) {
 		
 	$.ajax({
 	  type : 'GET',
@@ -43,7 +49,26 @@ function getDataFromUrl(token, url, keyParser) {
 	  url: url
 	}).done(function (res) { 
 		console.log(replaceAll(jsonParser(res), 'null', '[EMPTY]'))
-	
 	})
+}
 
+function getCompanyById(id, token) {
+	getDataFromUrl(token, "http://qa.jobbox.io/api/v1/companies/" + id)
+}
+
+function getOfferById(id, token) {
+	getDataFromUrl(token, "http://qa.jobbox.io/api/v1/offers/" + id)
+}
+
+
+function getOfferById(id, token) {
+	getDataFromUrl(token, "http://qa.jobbox.io/api/v1/user/applications/" + id)
+}
+
+function getRefferalById(id, token) {
+	getDataFromUrl(token, "http://qa.jobbox.io/api/v1/user/referrals/" + id)
+}
+
+function getRefferalRequestById(id, token) {
+	getDataFromUrl(token, "http://qa.jobbox.io/api/v1/user/referral_requests/" + id)
 }
