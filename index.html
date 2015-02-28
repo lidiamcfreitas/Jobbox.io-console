@@ -7,20 +7,38 @@
     <script src="js/jquery.js"></script>
     <script src="js/uikit.min.js"></script>
     <script>
+        document.onload = function () {
+            console.log(document.getElementById("inputTextBox").value)
+        }
+
+    String.prototype.replaceAt=function(index, character) {
+        return this.substr(0, index) + character + this.substr(index+character.length);
+    }
+
     	function runScript(e) {
     		if (e.keyCode == 13) {
     			var outPut=document.getElementById("inputTextBox").value;
+                if (outPut.length < 1) {
+                    outPut = '$'
+                }
 				document.getElementById("outPutDiv").innerHTML+=outPut + "<br/>";
 				updateScroll();
 				document.getElementById("inputTextBox").value="$";
-				return false;
+				
 			}
+
+            if (document.getElementById("inputTextBox").value.charAt(0) != "$") {
+                console.log("DBG_ " + document.getElementById("inputTextBox").value.charAt(0))
+                var str = document.getElementById("inputTextBox").value
+                 document.getElementById("inputTextBox").value = str.replaceAt(0, '$')
+            }
 		};
 
 		function updateScroll(){
-    var element = document.getElementById("console");
-    element.scrollTop = element.scrollHeight;
-}
+            var element = document.getElementById("console");
+        element.scrollTop = element.scrollHeight;
+        }
+    
     </script>
     <style>
         body{
@@ -39,7 +57,7 @@
                         	
                         </div>
                         <div>
-                            <input id="inputTextBox" style="border:0px" onkeypress="return runScript(event)" value="$" type="text" placeholder="" class="uk-form-blank uk-width-1-1" style="color:white">
+                            <input id="inputTextBox" style="border:0px" onkeydown="return runScript(event)" value="$" type="text" class="uk-form-blank uk-width-1-1" style="background-color:white">
                         </div>
                     </div>
             </div>

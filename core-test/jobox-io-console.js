@@ -1,5 +1,5 @@
 function replaceAll(str, replaceWhat, replaceWithWhat) {
-	return str.split('null').join('[EMPTY]')
+	return str.split(replaceWhat).join(replaceWithWhat)
 }
 
 function humanify(str) {
